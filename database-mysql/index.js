@@ -26,7 +26,7 @@ var fetchData = function(input, callback) {
       callback(err, null);
     } else { 
       console.log("results---->", results)
-      // callback(null, results);
+      callback(null, results);
     }
   })
 }

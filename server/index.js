@@ -18,11 +18,12 @@ app.get('/addresses', function (req, res) {
   console.log("This is the req", req.query.city);
 
   items.fetchData(req.query.city, function(err, data){
-
+    // console.log(" server/ fetch callback is called.")
     if(err) { 
       res.sendStatus(500);
     } else { 
-      res.send(data);
+      console.log("data----> ", data)
+      res.send(data)
     }
   })
 

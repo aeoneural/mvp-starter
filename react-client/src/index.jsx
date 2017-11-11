@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       locationInput: '', 
-      locationOutputAddress: null
+      locationOutputAddress: []
     }
   }
   locationInputHandler(input){
@@ -18,6 +18,12 @@ class App extends React.Component {
     this.setState({ 
       locationInput: input.target.value, 
     }) 
+  }
+  changeState(input){ 
+    this.setState({ 
+      locationOutputAddress : input
+    })
+    console.log("Update location output addres ", this.state.locationOutputAddress)
   }
 
   locationSearchButtonHandler(){
@@ -27,12 +33,7 @@ class App extends React.Component {
       url: '/addresses', 
       method:'GET',
       data : {city: this.state.locationInput}, 
-      success: (data) => {
-        console.log(" client/index.jsx - ", data)
-        this.setState({
-          locationOutputAddress: data
-        })
-      },
+      success: this.changeState.bind(this),
       error: (err) => {
         console.log('err', err);
       }
@@ -60,14 +61,15 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
+    return (
+    <div>
       <h1> FYF MVP! </h1>
       <Search 
         currentLocation = {this.state.locationInput}
         onChange = {this.locationInputHandler.bind(this)}
         onClick = {this.locationSearchButtonHandler.bind(this)} /> 
-      <AddressList 
-      addresses={this.state.locationOutputAddress}/>
+      <AddressList addresses={this.state.locationOutputAddress}/>
+
     </div>)
   }
 }

@@ -1,10 +1,20 @@
 import React from 'react';
-import AddressEntry from './AddressEntry.jsx';
+import AddressEntry from '../components/AddressEntry.jsx';
 
-const AddressList = (props) => (
-  <div>
-    <h4> Address LIST </h4>
-  </div>
-)
+const AddressList = (props) => {
+	// console.log("Props: ", props)
+  return (
+  	<div>
+      <h4> Address LIST </h4>
+      {
+      	props.addresses.map((item) => { 
+      		console.log(" item --->", item);
+      		return <AddressEntry eachaddress = {item} />
+
+    	})} 
+    	
+  
+    </div>)
+}
 
 export default AddressList;
