@@ -13,17 +13,29 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 // app.use(express.static(__dirname + '/../angular-client'));
 // app.use(express.static(__dirname + '/../node_modules'));
 
-app.get('/items', function (req, res) {
-	
-  items.selectAll(function(err, data) {
-  	// console.log("Err: ", err);
-  	console.log("server/index.js data -> ", data)
-    if(err) {
+app.get('/addresses', function (req, res) {
+
+  console.log("This is the req", req.query.city);
+
+  items.fetchData(req.query.city, function(err, data){
+
+    if(err) { 
       res.sendStatus(500);
-    } else {
+    } else { 
       res.send(data);
     }
-  });
+  })
+
+  // items.selectAll(function(err, data) {
+  // 	// console.log("Err: ", err);
+  // 	console.log("server/index.js data -> ", data)
+  //   if(err) {
+  //     res.sendStatus(500);
+  //   } else {
+  //     console.log("This is the data in server ", data)
+  //     res.send(data);
+  //   }
+  // });
 });
 
 app.listen(3000, function() {
