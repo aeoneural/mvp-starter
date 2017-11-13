@@ -73,7 +73,7 @@ var populateData = (inputQuery) => {
 
 var fetchData = function(input, callback) { 
   // input = input || 'San Francisco'
-  connection.query(`select * from address where address = '${input}' `, function(err, results, fields){ 
+  connection.query(`select * from address where city = lower('${input}') `, function(err, results, fields){ 
     if(err) { 
       console.log("error ---> ", err)
       callback(err, null);

@@ -4,13 +4,22 @@ import $ from 'jquery';
 import AddressList from './components/AddressList.jsx';
 import Search from './components/Search.jsx';
 import Add from './components/Add.jsx'
+import Mmap from './components/Mmap.jsx'
+import Places from './components/places.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       locationInput: '', 
-      locationOutputAddress: []
+      locationOutputAddress: [],
+      centerlocation: { 
+        lat: 37.776949, 
+        lng:  -122.435199
+      }, 
+      markers: [], 
+     
+
     }
   }
   locationInputHandler(input){
@@ -20,9 +29,19 @@ class App extends React.Component {
     }) 
   }
   changeState(input){ 
+    var tempMarkers = []
+    for(var i = 0; i < input.length; i++) { 
+      tempMarkers.push({ location: { lat: input[i].lat, lng: input[i].lng }})
+      console.log('marker sample', tempMarkers)
+
+    }
     this.setState({ 
-      locationOutputAddress : input
+      locationOutputAddress : input, 
+      markers: tempMarkers
     })
+    
+
+
     console.log("Update location output addres ", this.state.locationOutputAddress)
   }
 
@@ -61,6 +80,8 @@ class App extends React.Component {
   }
 
   render () {
+   
+    console.log('output location :', this.state.locationOutputAddress)
     return (
     <div>
       <h1> FYF MVP! </h1>
@@ -69,7 +90,11 @@ class App extends React.Component {
         onChange = {this.locationInputHandler.bind(this)}
         onClick = {this.locationSearchButtonHandler.bind(this)} /> 
       <AddressList addresses={this.state.locationOutputAddress}/>
-
+      <div style={{width:300, height:600, background:'red'}}>
+          <Mmap center = {this.state.centerlocation} markers = {this.state.markers}/>
+        </div>
+      
+      <Places />
     </div>)
   }
 }

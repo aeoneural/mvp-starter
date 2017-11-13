@@ -26,6 +26,7 @@
     "mysql": "^2.13.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-google-maps": "file:react-google-maps",
     "request": "^2.81.0"
   }
 }

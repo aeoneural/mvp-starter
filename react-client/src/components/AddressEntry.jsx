@@ -4,7 +4,7 @@ const AddressEntry = (props) => (
 	<div>
 	Name: {props.eachaddress.name}
 	<br/>
-	Location: {props.eachaddress.address}
+	Location: {props.eachaddress.street}
 	</div>
 )
 
