@@ -89,12 +89,11 @@ class App extends React.Component {
         currentLocation = {this.state.locationInput}
         onChange = {this.locationInputHandler.bind(this)}
         onClick = {this.locationSearchButtonHandler.bind(this)} /> 
-      <AddressList addresses={this.state.locationOutputAddress}/>
-      <div style={{width:300, height:600, background:'red'}}>
+      <div style={{width:500, height:600, background:'red'}}>
           <Mmap center = {this.state.centerlocation} markers = {this.state.markers}/>
         </div>
       
-      <Places />
+      <Places placeInfo = { this.state.locationOutputAddress }/>
     </div>)
   }
 }
